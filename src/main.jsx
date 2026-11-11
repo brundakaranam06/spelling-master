@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom/client';
+// import './index.css'; // Keep your existing CSS import if you are using Tailwind in Vite
 
 const LEVELS = [
   {
@@ -54,7 +56,11 @@ export default function SpellingApp() {
     const loadVoices = () => {
       setVoices(window.speechSynthesis.getVoices());
     };
+    
+    // Load immediately if available
     loadVoices();
+    
+    // Ensure it updates when the browser is ready loading voices
     if ('speechSynthesis' in window) {
       window.speechSynthesis.onvoiceschanged = loadVoices;
     }
@@ -63,8 +69,8 @@ export default function SpellingApp() {
   const speakWord = (word) => {
     if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(word);
-      // Look specifically for an Indian English voice
-      const indianVoice = voices.find(v => v.lang === 'en-IN' || v.name.includes('India'));
+      // Attempt to find and set an Indian English voice
+      const indianVoice = voices.find(v => v.lang === 'en-IN' || v.name.includes('India') || v.name.includes('Indian'));
       if (indianVoice) {
         utterance.voice = indianVoice;
       }
@@ -75,7 +81,7 @@ export default function SpellingApp() {
   useEffect(() => {
     if (activeLevel) {
       speakWord(activeLevel.words[currentWordIndex]);
-      setShowAnswer(false); // Reset answer visibility on new word
+      setShowAnswer(false);
     }
   }, [currentWordIndex, activeLevel]);
 
@@ -87,8 +93,10 @@ export default function SpellingApp() {
     
     if (userInput.toLowerCase().trim() === currentWord.toLowerCase()) {
       setFeedback('Correct! 🎉');
+      
+      // Only award a point if they didn't peek at the answer
       if (!showAnswer) {
-        setScore(s => s + 1); // Only score a point if they didn't peek
+        setScore(s => s + 1);
       }
       
       setTimeout(() => {
@@ -107,7 +115,7 @@ export default function SpellingApp() {
   };
 
   const handleLevelComplete = () => {
-    alert(`Level Finished! You scored ${score}/${activeLevel.words.length}. Great job!`);
+    alert(`Level Finished! You scored ${score}/${activeLevel.words.length}.`);
     setCurrentLevelId(null);
     setCurrentWordIndex(0);
     setScore(0);
@@ -159,7 +167,7 @@ export default function SpellingApp() {
         <button 
           onClick={() => speakWord(activeLevel.words[currentWordIndex])}
           className="mb-6 bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-full p-4 text-3xl transition-colors"
-          title="Listen to word"
+          title="Listen to word again"
         >
           🔊
         </button>
@@ -205,5 +213,15 @@ export default function SpellingApp() {
         )}
       </div>
     </div>
+  );
+}
+
+// Ensure the code safely mounts itself to the 'root' div expected by standard index.html files
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <SpellingApp />
+    </React.StrictMode>
   );
 }
