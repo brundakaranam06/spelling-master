@@ -94,7 +94,6 @@ export default function SpellingApp() {
       window.speechSynthesis.speak(utterance);
     }
   };
-  };
 
   useEffect(() => {
     if (activeLevel) {
