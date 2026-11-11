@@ -69,13 +69,31 @@ export default function SpellingApp() {
   const speakWord = (word) => {
     if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(word);
-      // Attempt to find and set an Indian English voice
-      const indianVoice = voices.find(v => v.lang === 'en-IN' || v.name.includes('India') || v.name.includes('Indian'));
-      if (indianVoice) {
-        utterance.voice = indianVoice;
+      
+      // 1. Try to find a specifically female Indian voice (Veena for Mac, Heera for Windows, or labeled 'Female')
+      const indianFemaleVoice = voices.find(v => 
+        (v.lang === 'en-IN' || v.name.includes('India')) && 
+        (v.name.includes('Female') || v.name.includes('Veena') || v.name.includes('Heera'))
+      );
+      
+      // 2. Fallback: Just grab any Indian voice if a female one isn't explicitly labeled
+      const anyIndianVoice = voices.find(v => v.lang === 'en-IN' || v.name.includes('India'));
+
+      // Apply the best voice we found
+      if (indianFemaleVoice) {
+        utterance.voice = indianFemaleVoice;
+      } else if (anyIndianVoice) {
+        utterance.voice = anyIndianVoice;
       }
+
+      // Slightly raise the pitch (default is 1) to make it sound a bit more feminine and kid-friendly
+      utterance.pitch = 1.2;
+      // Slightly slow down the speed so the spelling is easier to hear
+      utterance.rate = 0.9; 
+      
       window.speechSynthesis.speak(utterance);
     }
+  };
   };
 
   useEffect(() => {
