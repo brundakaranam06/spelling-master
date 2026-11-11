@@ -1,2 +1,108 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
-:root{font-family:Nunito,ui-rounded,system-ui,sans-serif;color:#172033;background:#f4f6fb;font-synthesis:none;text-rendering:optimizeLegibility}*{box-sizing:border-box}body{margin:0;min-width:320px;min-height:100vh}.page{min-height:100vh;padding:32px 20px}.home{max-width:1100px;margin:auto}.hero{text-align:center;padding:22px 0 32px}.trophy{font-size:46px}.eyebrow{font-size:12px;font-weight:900;letter-spacing:2px;color:#718096;margin:12px 0 6px}.hero h1{font-size:clamp(34px,6vw,54px);margin:0;font-weight:900;color:#172033}.subtitle{color:#64748b;font-size:17px;margin:8px 0}.level-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}.level-card{border:0;border-radius:20px;min-height:155px;padding:22px;text-align:left;color:white;display:flex;flex-direction:column;justify-content:space-between;gap:12px;box-shadow:0 8px 20px #1e293b18;cursor:pointer;transition:transform .15s,box-shadow .15s}.level-card:not(:disabled):hover{transform:translateY(-3px);box-shadow:0 12px 25px #1e293b25}.level-card:disabled{cursor:not-allowed}.level-card strong{font-size:21px;line-height:1.2}.level-number,.level-meta{font-size:12px;font-weight:800;letter-spacing:.5px}.level-meta{opacity:.9}.blue{--accent:#3978e8;background:#3978e8}.green{--accent:#199b72;background:#199b72}.purple{--accent:#8054cf;background:#8054cf}.orange{--accent:#e58a32;background:#e58a32}.red{--accent:#dc5555;background:#dc5555}.teal{--accent:#159caa;background:#159caa}.level-card.blue{background:#3978e8}.level-card.green{background:#199b72}.level-card.purple{background:#8054cf}.level-card.orange{background:#e58a32}.level-card.red{background:#dc5555}.level-card.teal{background:#159caa}.level-card.locked{background:#aab2c0;opacity:.72}.home-footer{display:flex;justify-content:space-between;gap:12px;align-items:center;color:#718096;font-size:13px;margin-top:24px}.text-button,.hint-button{border:0;background:none;color:#536b9a;text-decoration:underline;cursor:pointer;font:inherit}.practice{display:flex;align-items:center;justify-content:center;background:var(--accent);transition:background .2s}.practice-card{width:min(100%,490px);background:white;border-radius:26px;padding:28px;box-shadow:0 20px 55px #14213d35;text-align:center}.topline{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:900;color:#718096;letter-spacing:.4px}.back-button{border:0;background:none;color:#64748b;font:inherit;font-weight:800;cursor:pointer}.progress-track{height:8px;background:#edf0f5;border-radius:10px;overflow:hidden;margin:20px 0 28px}.progress-fill{height:100%;background:var(--accent);border-radius:10px;transition:width .25s}.practice-card h2{font-size:23px;margin:5px 0;color:#202b3c}.instruction{color:#718096;margin:8px 0 20px}.listen-button{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 22px;padding:14px 24px;border:0;border-radius:50px;background:#edf3ff;color:#2858a8;cursor:pointer}.listen-button span{font-size:28px}.listen-button small{font-size:14px;font-weight:900}.practice-card input{width:100%;padding:17px 14px;border:2px solid #dce2ec;border-radius:14px;font:700 19px Nunito;text-align:center;outline:none}.practice-card input:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent),transparent 84%)}.submit-button,.secondary-button{width:100%;border:0;border-radius:14px;padding:15px;margin-top:12px;background:var(--accent);color:white;font:900 17px Nunito;cursor:pointer}.submit-button:disabled{opacity:.5;cursor:not-allowed}.hint-button{margin-top:15px;font-size:13px}.hint{font-size:13px;color:#536b9a;background:#f2f5fc;border-radius:10px;padding:10px}.feedback{font-size:17px;font-weight:900;margin:18px 0 6px}.feedback.success{color:#16845e}.feedback.retry{color:#c45151}.score-line{display:flex;justify-content:space-between;border-top:1px solid #edf0f5;margin-top:22px;padding-top:16px;color:#718096;font-size:13px}.score-line strong{color:#273449}.finish-actions{margin-top:10px}.secondary-button{background:#edf1f7;color:#44516a}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:520px){.page{padding:20px 14px}.practice-card{padding:22px 18px;border-radius:22px}.home-footer{align-items:flex-start;flex-direction:column}}
+/* Import a playful, highly readable font for kids */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
+/* Base Body Styling - Animated Polka Dot Background */
+body {
+  margin: 0;
+  font-family: 'Fredoka', sans-serif;
+  background-color: #f4f9ff;
+  background-image: radial-gradient(#cbd5e1 2px, transparent 2px);
+  background-size: 30px 30px;
+  animation: backgroundScroll 20s linear infinite;
+}
+
+@keyframes backgroundScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+/* Make all text use the fun font */
+* {
+  font-family: 'Fredoka', sans-serif !important;
+}
+
+/* 3D Button Effects for the Level Cards */
+button {
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* Level Grid Cards */
+.grid button {
+  border: 4px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.15), 0 15px 20px rgba(0, 0, 0, 0.1) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.grid button:hover:not(:disabled) {
+  transform: translateY(-4px) scale(1.02) !important;
+  box-shadow: 0 12px 0 rgba(0, 0, 0, 0.15), 0 20px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.grid button:active:not(:disabled) {
+  transform: translateY(8px) scale(0.98) !important;
+  box-shadow: 0 0px 0 rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* The Main Practice Card (Glassmorphism Effect) */
+.max-w-md.bg-white {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+  border: 4px solid white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Make the text input field look like a fun game input */
+input[type="text"] {
+  background-color: #f8fafc;
+  border: 4px solid #e2e8f0 !important;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.05), 0 0 0 4px rgba(59, 130, 246, 0.2) !important;
+  background-color: #ffffff;
+}
+
+/* Speaker Button Hover Effect */
+button[title="Listen to word again"], button[title="Listen to word"] {
+  box-shadow: 0 4px 0 rgba(147, 197, 253, 0.5);
+}
+
+button[title="Listen to word again"]:active, button[title="Listen to word"]:active {
+  transform: translateY(4px) !important;
+  box-shadow: 0 0px 0 rgba(147, 197, 253, 0.5);
+}
+
+/* Submit Button 3D Effect */
+form button[type="submit"] {
+  box-shadow: 0 6px 0 #1d4ed8;
+  border: 2px solid #1e40af;
+}
+
+form button[type="submit"]:active {
+  transform: translateY(6px) !important;
+  box-shadow: 0 0px 0 #1d4ed8;
+}
+
+/* Fun Animations for the Feedback Text */
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.text-green-500, .text-red-500 {
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+/* The Answer Box Styling */
+.bg-amber-50 {
+  background-image: repeating-linear-gradient(45deg, #fffbeb 0, #fffbeb 10px, #fef3c7 10px, #fef3c7 20px);
+  border: 3px dashed #f59e0b !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
